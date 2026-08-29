@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ishan Singlish - Fulfill All Your Sinhala Text Needs</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">IS</div>
+        <div class="brand-title">
+          <h1>Ishan Singlish</h1>
+          <span>
+            Fullfill all your Sinhala text needs 
+            <span class="offline-badge">⚡ 100% Offline</span>
+          </span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-sound" class="btn-icon active" title="Toggle Typing Sound Effects">
+          🔊
+        </button>
+        <button id="btn-cheatsheet" class="action-btn" title="Typing Guide Cheatsheet">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          Guide & Rules
+        </button>
+        <button id="btn-history" class="action-btn" title="Saved History">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          History
+        </button>
+        <button id="btn-theme" class="btn-icon" title="Toggle Light/Dark Theme">
+          <svg id="theme-icon-sun" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Control Bar with Modes & Controls -->
+    <div class="control-bar">
+      <div class="mode-selector">
+        <button id="mode-popular" class="mode-btn active" data-mode="popular" title="Easy phonetic Singlish typing (mama -> මම)">
+          Singlish Phonetic (Helakuru)
+        </button>
+        <button id="mode-english" class="mode-btn" data-mode="english" title="English words & phrases translation (good morning -> සුබ උදෑසනක්)">
+          📘 English Translator
+        </button>
+        <button id="mode-ucsc" class="mode-btn" data-mode="ucsc" title="Official UCSC conversion spec (dh -> ද, th -> ත)">
+          Official UCSC Standard
+        </button>
+      </div>
+
+      <!-- Formatting Toolbar -->
+      <div class="toolbar-formatting">
+        <div class="font-size-controls">
+          <button id="btn-bold" class="btn-icon" title="Toggle Bold Text Style" style="font-weight: 700;">B</button>
+          <button id="btn-font-dec" class="btn-icon" title="Decrease font size">A-</button>
+          <button id="btn-font-reset" class="btn-icon" title="Reset font size">100%</button>
+          <button id="btn-font-inc" class="btn-icon" title="Increase font size">A+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editor Dual Panel -->
+    <div class="editor-grid">
+      
+      <!-- Input Card -->
+      <div class="editor-card">
+        <div class="card-header">
+          <h2>
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            Singlish / English Input
+          </h2>
+          <div class="card-actions">
+            <button id="btn-wrap-quotes" class="action-btn" title='Preserve word in English script'>
+              Keep English
+            </button>
+            <button id="btn-clear" class="action-btn" title="Clear text">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              Clear
+            </button>
+          </div>
+        </div>
+        <textarea id="singlish-input" class="editor-textarea" placeholder='Type Singlish or English text here... (Tip: Use "quotes" or \Word to preserve English words)' autofocus></textarea>
+        <div class="card-footer">
+          <span id="input-stats">0 characters | 0 words</span>
+          <span id="mode-status-badge">Singlish Mode</span>
+        </div>
+      </div>
+
+      <!-- Sinhala & English Output Card -->
+      <div class="editor-card">
+        <div class="card-header">
+          <h2>
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Output Text
+          </h2>
+
+          <div class="card-actions">
+            <!-- Output Font & Style Controls -->
+            <div class="output-style-bar" title="Select Output Font Installed on your Computer">
+              <select id="select-output-font" class="output-font-select" title="Installed Computer Font Family">
+                <optgroup label="⚡ Computer Font Scanner">
+                  <option value="__scan_local__">🔍 Scan All Installed Fonts...</option>
+                </optgroup>
+
+                <optgroup label="🇱🇰 Installed Sinhala Fonts">
+                  <option value="Iskoola Pota">Iskoola Pota</option>
+                  <option value="Nirmala UI">Nirmala UI</option>
+                  <option value="Segoe UI Historic">Segoe UI Historic</option>
+                  <option value="FM Abhaya">FM Abhaya</option>
+                  <option value="FM Bindumathi">FM Bindumathi</option>
+                  <option value="FM Derana">FM Derana</option>
+                  <option value="FM Malithi">FM Malithi</option>
+                  <option value="DL Manel">DL Manel</option>
+                  <option value="Kaputa">Kaputa</option>
+                  <option value="Noto Sans Sinhala">Noto Sans Sinhala</option>
+                </optgroup>
+
+                <optgroup label="🔤 Installed System Fonts">
+                  <option value="Segoe UI">Segoe UI</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Calibri">Calibri</option>
+                  <option value="Comic Sans MS">Comic Sans MS</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Impact">Impact</option>
+                  <option value="Tahoma">Tahoma</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Trebuchet MS">Trebuchet MS</option>
+                  <option value="Verdana">Verdana</option>
+                </optgroup>
+
+                <optgroup label="✏️ Custom Installed Font">
+                  <option value="__custom_font__">✏️ Type Custom Font Name...</option>
+                </optgroup>
+              </select>
+
+              <!-- Output Italic Toggle -->
+              <button id="btn-output-italic" class="btn-icon" style="width: 26px; height: 26px; font-style: italic; font-size: 0.8rem;" title="Toggle Italic Output">I</button>
+
+              <!-- Color Dots -->
+              <div class="color-dot active" data-color="default" style="background-color: var(--text-primary);" title="Default Color"></div>
+              <div class="color-dot" data-color="blue" style="background-color: #2563eb;" title="Blue Color"></div>
+              <div class="color-dot" data-color="green" style="background-color: #059669;" title="Green Color"></div>
+              <div class="color-dot" data-color="purple" style="background-color: #7c3aed;" title="Purple Color"></div>
+            </div>
+
+            <button id="btn-copy" class="action-btn primary" title="Copy text">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+              Copy
+            </button>
+            <button id="btn-download" class="action-btn" title="Download text file">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              Download
+            </button>
+          </div>
+        </div>
+        <textarea id="sinhala-output" class="editor-textarea sinhala-text" placeholder="පරිවර්තනය කරන ලද පෙළ මෙතැනින් බලන්න..." readonly></textarea>
+        <div class="card-footer">
+          <span id="output-stats">0 characters</span>
+          <span id="save-status">Auto-saved to history</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Keymap Cheatsheet & Rules Modal -->
+  <div id="modal-cheatsheet" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>Ishan Singlish Guide & Rules</h3>
+        <button id="btn-close-cheatsheet" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Rules Section -->
+        <div class="cheatsheet-section">
+          <h4>💡 Preserving English Words (ඉංග්‍රීසි වචන එලෙසම තබාගැනීම)</h4>
+          <div class="key-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="key-card"><code>"Word" (In Quotes)</code> <span class="sin">Output keeps word in English (e.g. "Zoom" -> Zoom)</span></div>
+            <div class="key-card"><code>\Word (Backslash prefix)</code> <span class="sin">Output keeps word in English (e.g. \WhatsApp -> WhatsApp)</span></div>
+            <div class="key-card"><code>ALL-CAPS (2+ letters)</code> <span class="sin">Keeps acronyms in English (e.g. PDF, API, USB, CEO)</span></div>
+            <div class="key-card"><code>English Mode Unmapped</code> <span class="sin">Unmapped English words stay in English automatically</span></div>
+          </div>
+        </div>
+        
+        <!-- English Dictionary Section -->
+        <div class="cheatsheet-section">
+          <h4>📘 English to Sinhala Common Dictionary</h4>
+          <div class="key-grid">
+            <div class="key-card"><code>good morning</code> <span class="sin">සුබ උදෑසනක්</span></div>
+            <div class="key-card"><code>thank you</code> <span class="sin">ස්තුතියි</span></div>
+            <div class="key-card"><code>how are you</code> <span class="sin">කොහොමද ඔයාට</span></div>
+            <div class="key-card"><code>welcome</code> <span class="sin">සාදරයෙන් පිළිගනිමු</span></div>
+            <div class="key-card"><code>please</code> <span class="sin">කරුණාකරලා</span></div>
+            <div class="key-card"><code>sorry</code> <span class="sin">කනගාටුයි</span></div>
+            <div class="key-card"><code>mother</code> <span class="sin">අම්මා</span></div>
+            <div class="key-card"><code>father</code> <span class="sin">තාත්තා</span></div>
+            <div class="key-card"><code>home / house</code> <span class="sin">ගෙදර</span></div>
+            <div class="key-card"><code>water</code> <span class="sin">වතුර</span></div>
+            <div class="key-card"><code>friend</code> <span class="sin">යාළුවා</span></div>
+            <div class="key-card"><code>today</code> <span class="sin">අද</span></div>
+          </div>
+        </div>
+
+        <!-- Singlish Vowels Section -->
+        <div class="cheatsheet-section">
+          <h4>Vowels (ස්වර - Phonetic Singlish)</h4>
+          <div class="key-grid">
+            <div class="key-card"><code>a</code> <span class="sin">අ</span></div>
+            <div class="key-card"><code>aa / A</code> <span class="sin">ආ</span></div>
+            <div class="key-card"><code>ae</code> <span class="sin">ඇ</span></div>
+            <div class="key-card"><code>aae</code> <span class="sin">ඈ</span></div>
+            <div class="key-card"><code>i</code> <span class="sin">ඉ</span></div>
+            <div class="key-card"><code>ii / I</code> <span class="sin">ඊ</span></div>
+            <div class="key-card"><code>u</code> <span class="sin">උ</span></div>
+            <div class="key-card"><code>uu / U</code> <span class="sin">ඌ</span></div>
+            <div class="key-card"><code>e</code> <span class="sin">එ</span></div>
+            <div class="key-card"><code>ee / E</code> <span class="sin">ඒ</span></div>
+            <div class="key-card"><code>o</code> <span class="sin">ඔ</span></div>
+            <div class="key-card"><code>oo / O</code> <span class="sin">ඕ</span></div>
+            <div class="key-card"><code>ai</code> <span class="sin">ඓ</span></div>
+            <div class="key-card"><code>au</code> <span class="sin">ඖ</span></div>
+          </div>
+        </div>
+
+        <!-- Singlish Consonants Section -->
+        <div class="cheatsheet-section">
+          <h4>Consonants (ව්‍යංජන - Popular Mode)</h4>
+          <div class="key-grid">
+            <div class="key-card"><code>k</code> <span class="sin">ක</span></div>
+            <div class="key-card"><code>g</code> <span class="sin">ග</span></div>
+            <div class="key-card"><code>t / th</code> <span class="sin">ත</span></div>
+            <div class="key-card"><code>T</code> <span class="sin">ට</span></div>
+            <div class="key-card"><code>d / dh</code> <span class="sin">ද</span></div>
+            <div class="key-card"><code>D</code> <span class="sin">ඩ</span></div>
+            <div class="key-card"><code>n</code> <span class="sin">න</span></div>
+            <div class="key-card"><code>p</code> <span class="sin">ප</span></div>
+            <div class="key-card"><code>b</code> <span class="sin">බ</span></div>
+            <div class="key-card"><code>m</code> <span class="sin">ම</span></div>
+            <div class="key-card"><code>y</code> <span class="sin">ය</span></div>
+            <div class="key-card"><code>r</code> <span class="sin">ර</span></div>
+            <div class="key-card"><code>l</code> <span class="sin">ල</span></div>
+            <div class="key-card"><code>v / w</code> <span class="sin">ව</span></div>
+            <div class="key-card"><code>s</code> <span class="sin">ස</span></div>
+            <div class="key-card"><code>h</code> <span class="sin">හ</span></div>
+            <div class="key-card"><code>f</code> <span class="sin">ෆ</span></div>
+            <div class="key-card"><code>ch</code> <span class="sin">ච</span></div>
+            <div class="key-card"><code>j</code> <span class="sin">ජ</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="modal-history" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>Conversion History</h3>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <button id="btn-clear-history" class="action-btn" style="color:var(--danger); border-color:var(--danger);">Clear History</button>
+          <button id="btn-close-history" class="btn-icon">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="history-container" class="history-list">
+          <p style="text-align:center; color:var(--text-muted); padding:2rem;">No conversion history yet. Type something to save automatically!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <p>Ishan Singlish Converter &bull; 100% Offline App</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="singlish-converter.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
